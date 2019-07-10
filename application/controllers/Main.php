@@ -1,11 +1,28 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Main extends CI_Controller
+{
 
-	public function index()
+	function index()
 	{
+		$header_data = array(
+			'title' => 'Al Romero Natural',
+			'keywords' => '',
+			'description' => '',
+			'author' => '',
+			'links' => array('css/main.css'),
+			'options' => array(
+				'google_analitics' => false
+			)
+		);
+
+		$footer_data = array(
+			'scripts' => array('js/main.js')
+		);
+
+		$this->load->view('pages/layout/header', $header_data);
 		$this->load->view('pages/main');
+		$this->load->view('pages/layout/footer', $footer_data);
 	}
-	
 }
