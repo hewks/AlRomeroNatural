@@ -18,6 +18,67 @@ General Styles
     background-size: cover;
 }
 
+.hw-bg-icon {
+    color: rgba(246, 225, 203, 0.349);
+    font-size: calc(7vw);
+    position: absolute;
+}
+
+.hw-bg-icon.hw-bg-icon-1{
+    top: calc(15vh - 7vw);
+    left: calc(10vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-2{
+    top: calc(32vh - 7vw);
+    left: calc(25vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-3{
+    top: calc(20vh - 7vw);
+    left: calc(65vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-4{
+    top: calc(45vh - 7vw);
+    left: calc(50vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-5{
+    top: calc(55vh - 7vw);
+    left: calc(15vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-6{
+    top: calc(65vh - 7vw);
+    left: calc(75vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-7{
+    top: calc(75vh - 7vw);
+    left: calc(40vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-8{
+    top: calc(85vh - 7vw);
+    left: calc(7vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-9{
+    top: calc(95vh - 7vw);
+    left: calc(55vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-10{
+    top: calc(25vh - 7vw);
+    left: calc(90vw - 7vw);
+}
+
+.hw-bg-icon.hw-bg-icon-11{
+    top: calc(85vh - 7vw);
+    left: calc(90vw - 7vw);
+}
+
 /* ///////////////////////////////////////////////
 Navigation Styles
 /////////////////////////////////////////////// */
