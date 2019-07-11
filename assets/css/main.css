@@ -1,0 +1,50 @@
+/* 
+    Al Romero Natural
+    By Hewks
+    Principal Styles
+*/
+
+/* ///////////////////////////////////////////////
+General Styles
+/////////////////////////////////////////////// */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+    outline: none;
+}
+
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+/* /////////// Background /////////// */
+
+.hw-cover-bg {
+    background-size: cover;
+}
+
+/* ///////////////////////////////////////////////
+Page Styles
+/////////////////////////////////////////////// */
+
+.hw-page-container {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* ///////////////////////////////////////////////
+Navigation Styles
+/////////////////////////////////////////////// */

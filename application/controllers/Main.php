@@ -11,7 +11,10 @@ class Main extends CI_Controller
 			'keywords' => '',
 			'description' => '',
 			'author' => '',
-			'links' => array('css/main.css'),
+			'links' => array(
+				'css/main.css',
+				'css/layout.css'				
+			),
 			'options' => array(
 				'google_analitics' => false
 			)
