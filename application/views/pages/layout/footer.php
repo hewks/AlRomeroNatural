@@ -1,3 +1,10 @@
+</div>
+<!-- //Section Container -->
+
+<footer class="hw-footer">
+    <span href="#">2019 &copy; Al Romero Natural y Creador por: <a href="https://www.hewks.net">Hewks.net</a></span>
+</footer>
+
 <i class="hw-bg-icon hw-bg-icon-1 fab fa-pagelines"></i>
 <i class="hw-bg-icon hw-bg-icon-2 fab fa-canadian-maple-leaf"></i>
 <i class="hw-bg-icon hw-bg-icon-3 fas fa-tree"></i>

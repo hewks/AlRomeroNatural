@@ -48,5 +48,39 @@ Page Styles
 }
 
 /* ///////////////////////////////////////////////
-Navigation Styles
+Section Styles
 /////////////////////////////////////////////// */
+
+.hw-section-container {
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+/* ///////////////////////////////////////////////
+Footer Styles
+/////////////////////////////////////////////// */
+
+.hw-footer {
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+@media screen and (min-width: 360px) {
+    .hw-footer {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .hw-footer {
+        font-size: 14px;
+    }
+}

@@ -53,9 +53,9 @@
                 <a href="#" class="hw-header-link">Jabones</a>
                 <a href="#" class="hw-header-link">Ingreso</a>
                 <a href="#" class="hw-header-link">Registro</a>
-                <a id="hw-navigation-toggler" class="hw-header-brand">
+                <div id="hw-navigation-toggler" class="hw-header-brand">
                     <h1>Al Romero Natural</h1>
-                </a>
+                </div>
                 <a href="#" class="hw-header-link">Nosotros</a>
                 <a href="#" class="hw-header-link">Contacto</a>
                 <a href="#" class="hw-header-link">Mapa</a>
@@ -87,3 +87,6 @@
 
         </div>
         <!-- //Navigation -->
+
+        <!-- Section Container -->
+        <div class="hw-section-container">
