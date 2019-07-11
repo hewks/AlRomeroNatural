@@ -42,6 +42,7 @@ Page Styles
 .hw-page-container {
     width: 100%;
     min-height: 100vh;
+    max-height: 100vh;
     overflow: hidden;
 }
 

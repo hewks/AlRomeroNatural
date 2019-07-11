@@ -31,6 +31,10 @@
         }
     </style>
 
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/vendor/fontawesome/css/all.min.css">
+
     <?php foreach ($links as $link) : ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/<?= $link ?>">
     <?php endforeach; ?>

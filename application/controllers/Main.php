@@ -11,17 +11,14 @@ class Main extends CI_Controller
 			'keywords' => '',
 			'description' => '',
 			'author' => '',
-			'links' => array(
-				'css/main.css',
-				'css/layout.css'				
-			),
+			'links' => array(),
 			'options' => array(
 				'google_analitics' => false
 			)
 		);
 
 		$footer_data = array(
-			'scripts' => array('js/main.js')
+			'scripts' => array()
 		);
 
 		$this->load->view('pages/layout/header', $header_data);
