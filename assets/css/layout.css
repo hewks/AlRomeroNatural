@@ -153,7 +153,7 @@ Navigation Styles
 
 .hw-sidebar {
     height: 0;
-    background-color: rgb(38, 67, 47);
+    background-color: rgba(38, 67, 47, 0.596);
     position: absolute;
     top: calc(-100vh + 75px);
     left: 0;
@@ -170,7 +170,7 @@ Navigation Styles
 }
 
 .hw-active-sidebar-2 {
-    height: calc(100vh - 75px);
+    height: calc(100vh - 75px - 35px);
 }
 
 .hw-sidebar>.hw-sidebar-title {
