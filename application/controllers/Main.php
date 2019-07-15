@@ -17,7 +17,9 @@ class Main extends CI_Controller
 		);
 
 		$footer_data = array(
-			'scripts' => array()
+			'scripts' => array(
+				'js/components/simpleSlider.js'
+			)
 		);
 
 		$this->load->view('pages/layout/header', $header_data);
