@@ -11,7 +11,7 @@
             <div class="hw-form-group">
                 <input type="password" name="password" class="hw-form-input" data-name="Contraseña" placeholder="Contraseña" require>
             </div>
-            <button class="hw-btn hw-btn-login">Ingresar</button>
+            <button class="hw-btn hw-send-form" data-send="hw-login-form">Ingresar</button>
         </form>
         <form class="hw-theme-user-form <?= $register ?>" id="hw-register-form">
             <div class="hw-form-group">
@@ -21,10 +21,10 @@
                 <input type="text" name="username" class="hw-form-input" data-name="Nombre de usuario" placeholder="Nombre de usuario" require>
             </div>
             <div class="hw-form-group">
-                <input type="password" name="password" class="hw-form-input" data-name="Contraseña" placeholder="Contraseña" require>
+                <input type="password" name="password" id="password_1" class="hw-form-input" data-name="Contraseña" placeholder="Contraseña" require>
             </div>
             <div class="hw-form-group">
-                <input type="password" name="password_2" class="hw-form-input" data-name="Contraseña" placeholder="Contraseña" require>
+                <input type="password" name="password_2" id="password_2" class="hw-form-input" data-name="Contraseña" placeholder="Contraseña" require>
             </div>
             <div class="hw-form-group">
                 <input type="text" name="name" class="hw-form-input" data-name="Nombre" placeholder="Nombre" require>
@@ -32,7 +32,7 @@
             <div class="hw-form-group">
                 <input type="text" name="lastname" class="hw-form-input" data-name="Apellido" placeholder="Apellido" require>
             </div>
-            <button class="hw-btn">Registrar</button>
+            <button class="hw-btn hw-send-form" data-send="hw-register-form">Registrar</button>
         </form>
     </div>
 </div>

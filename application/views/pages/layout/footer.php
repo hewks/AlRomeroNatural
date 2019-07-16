@@ -20,6 +20,10 @@
 </div>
 <!-- //Page Container -->
 
+<script>
+    var base_url = '<?= base_url() ?>'
+</script>
+
 <script src="<?= base_url() ?>assets/vendor/fontawesome/js/all.min.js"></script>
 
 <script src="<?= base_url() ?>assets/js/main.js"></script>
