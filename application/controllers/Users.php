@@ -133,7 +133,7 @@ class Users extends CI_Controller
 
         if (!$this->genetic->validate_array($login_data)) {
             $error = $this->errors->return_error('100001');
-            $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+            $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
             $output[] = array(
                 'status' => false,
                 'response' => $error['error_text']
@@ -146,7 +146,7 @@ class Users extends CI_Controller
             );
             if (!$this->Model_Customers->bool_search_with($_search)) {
                 $error = $this->errors->return_error('100002');
-                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
                 $output[] = array(
                     'status' => false,
                     'response' => $error['error_text']
@@ -154,14 +154,14 @@ class Users extends CI_Controller
             } else {
                 if (!$this->Model_Customers->email_login($login_data)) {
                     $error = $this->errors->return_error('100003');
-                    $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+                    $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
                     $output[] = array(
                         'status' => false,
                         'response' => $error['error_text']
                     );
                 } else {
                     $success = $this->errors->return_error('200001');
-                    $this->Model_Errors->create($this->errors->create_error_data($success['error_num'],$this->user_id));
+                    $this->Model_Errors->create($this->errors->create_error_data($success['error_num'], $this->user_id));
                     $output[] = array(
                         'status' => true,
                         'response' => $success['error_text']
@@ -219,7 +219,7 @@ class Users extends CI_Controller
 
         if (!$this->genetic->validate_array($register_data)) {
             $error = $this->errors->return_error('100001');
-            $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+            $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
             $output[] = array(
                 'status' => false,
                 'response' => $error['error_text']
@@ -232,7 +232,7 @@ class Users extends CI_Controller
             );
             if ($this->Model_Customers->bool_search_with($_search)) {
                 $error = $this->errors->return_error('100004');
-                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
                 $output[] = array(
                     'status' => false,
                     'response' => $error['error_text']
@@ -240,14 +240,14 @@ class Users extends CI_Controller
             } else {
                 if (!$this->Model_Customers->create($register_data)) {
                     $error = $this->errors->return_error('100005');
-                    $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+                    $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
                     $output[] = array(
                         'status' => false,
                         'response' => $error['error_text']
                     );
                 } else {
                     $success = $this->errors->return_error('200002');
-                    $this->Model_Errors->create($this->errors->create_error_data($success['error_num'],$this->user_id));
+                    $this->Model_Errors->create($this->errors->create_error_data($success['error_num'], $this->user_id));
                     $output[] = array(
                         'status' => true,
                         'response' => $success['error_text']
@@ -263,9 +263,9 @@ class Users extends CI_Controller
     function user_exit()
     {
         header('Content-Type: application/json');
-        $output = array();        
+        $output = array();
         $error = $this->errors->return_error('200003');
-        $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+        $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
         $array_items = array('id', 'username', 'email', 'name', 'lastname', 'login_date', 'login', 'logout_date');
         $this->session->unset_userdata($array_items);
         $output[] = array(
@@ -292,7 +292,7 @@ class Users extends CI_Controller
 
         if (!$this->genetic->validate_array($edit_data)) {
             $error = $this->errors->return_error('100001');
-            $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+            $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
             $output[] = array(
                 'status' => false,
                 'response' => $error['error_text']
@@ -300,14 +300,55 @@ class Users extends CI_Controller
         } else {
             if (!$this->Model_Customers->update_with_id($edit_data)) {
                 $error = $this->errors->return_error('100006');
-                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
                 $output[] = array(
                     'status' => false,
                     'response' => $error['error_text']
                 );
             } else {
                 $error = $this->errors->return_error('200004');
-                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'],$this->user_id));
+                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
+                $output[] = array(
+                    'status' => true,
+                    'response' => $error['error_text']
+                );
+            }
+        }
+
+        echo json_encode($output);
+        exit();
+    }
+
+    function change_password()
+    {
+        header('Content-Type: application/json');
+        $output = array();
+        $fecha = date('Y-m-d H:i:s');
+
+        $edit_data = array(
+            'password' => $this->input->post('password'),
+            'updated_at' => $fecha,
+            'id' => $this->input->post('id'),
+        );
+
+        if (!$this->genetic->validate_array($edit_data)) {
+            $error = $this->errors->return_error('100001');
+            $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
+            $output[] = array(
+                'status' => false,
+                'response' => $error['error_text']
+            );
+        } else {
+            if (!$this->Model_Customers->update_with_id($edit_data)) {
+                $error = $this->errors->return_error('100007');
+                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
+                $output[] = array(
+                    'status' => false,
+                    'response' => $error['error_text']
+                );
+            } else {
+                $error = $this->errors->return_error('200005');
+                $this->Model_Errors->create($this->errors->create_error_data($error['error_num'], $this->user_id));
                 $output[] = array(
                     'status' => true,
                     'response' => $error['error_text']

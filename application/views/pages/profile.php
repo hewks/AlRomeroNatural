@@ -24,10 +24,10 @@
             </form>
             <form class="hw-theme-user-form hw-transparent-bg hw-pt-20" id="hw-password-form">
                 <div class="hw-form-group">
-                    <input type="password" name="password" data-name="Contraseña" class="hw-form-input" placeholder="Nueva Contraseña">
+                    <input type="password" name="password" id="password_1" data-name="Contraseña" class="hw-form-input" placeholder="Nueva Contraseña">
                 </div>
                 <div class="hw-form-group">
-                    <input type="password" name="password_2" data-name="Repetir Contraseña" class="hw-form-input" placeholder="Repetir Contraseña">
+                    <input type="password" name="password_2" id="password_2" data-name="Repetir Contraseña" class="hw-form-input" placeholder="Repetir Contraseña">
                 </div>
                 <input type="hidden" name="id" class="hw-form-input" value="<?= $id ?>">
                 <button class="hw-btn hw-send-form" data-send="hw-password-form">Guardar</button>

@@ -43,6 +43,11 @@ class Errors
             'error_text' => 'No fue posible editar tu usuario, intenta más tarde.',
             'error_type' => 'error'
         );
+        $errors['100007'] = array(
+            'error_num' => '100007',
+            'error_text' => 'No fue posible editar la contrasñea de tu usuario, intenta más tarde.',
+            'error_type' => 'error'
+        );
 
         // //////////Success
         $errors['200001'] = array(
@@ -63,6 +68,11 @@ class Errors
         $errors['200004'] = array(
             'error_num' => '200004',
             'error_text' => 'Tu usuario fue editado.',
+            'error_type' => 'success'
+        );
+        $errors['200005'] = array(
+            'error_num' => '200005',
+            'error_text' => 'La contraseña de tu usuario se cambió.',
             'error_type' => 'success'
         );
 

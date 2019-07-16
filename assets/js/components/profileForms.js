@@ -18,17 +18,17 @@ sendFormButton.forEach((button) => {
                 sendPhotos: false,
                 redirectUrl: false,
                 validateTwoPass: false,
-                hashPasswords: true,
+                hashPasswords: false,
                 reloadUrl: true,
             }
         } else if (button.dataset.send == 'hw-password-form') {
             sendOptions = {
                 sendUrl: base_url + 'Users/change_password',
                 sendPhotos: false,
-                redirectUrl: base_url + 'Main',
+                redirectUrl: false,
                 validateTwoPass: true,
                 hashPasswords: true,
-                reloadUrl: true,
+                reloadUrl: false,
             }
         }
         var sendForm = new HwForms(form, sendOptions);
