@@ -18,6 +18,31 @@ document.getElementById('hw-navigation-toggler').addEventListener('click', () =>
 });
 
 //////////////////////////////////////
+// User exit
+//////////////////////////////////////
+
+var exitButtons = document.querySelectorAll('.hw-exit-button');
+exitButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        userExit();
+    });
+});
+
+function userExit() {
+    var request = new XMLHttpRequest();
+    request.open("POST", base_url + 'Users/user_exit');
+    request.send();
+    request.onreadystatechange = () => {
+        if (request.readyState == 200 || request.readyState == 4) {
+            var requestResponse = JSON.parse(request.responseText);
+            if (requestResponse[0]['status'] == true) {
+                location.reload();
+            }
+        }
+    }
+}
+
+//////////////////////////////////////
 // Utils
 //////////////////////////////////////
 
@@ -33,7 +58,7 @@ class HwForms {
     // validateTwoPass: true, Bool
 
     constructor(form, formOptions) {
-        this.formOtions = formOptions;
+        this.formOptions = formOptions;
         this.form = form;
     }
 
@@ -48,7 +73,7 @@ class HwForms {
 
     validateForm() {
         var errors = []
-        if (this.formOtions['validateTwoPass'] == true) {
+        if (this.formOptions['validateTwoPass'] == true) {
             if (!this.validateTwoPass()) {
                 PNotify.error({
                     title: ':(',
@@ -100,18 +125,22 @@ class HwForms {
 
             var request = new XMLHttpRequest();
 
-            request.open("POST", this.formOtions.sendUrl);
+            request.open("POST", this.formOptions.sendUrl);
             request.send(formData);
 
             request.onreadystatechange = () => {
                 if (request.readyState == 200 || request.readyState == 4) {
                     var requestResponse = JSON.parse(request.responseText);
                     if (requestResponse[0]['status'] == true) {
-                        PNotify.success({
-                            title: 'AlRomeroNatural',
-                            text: requestResponse[0]['response'],
-                            icon: 'fab fa-wpforms'
-                        });
+                        if (this.formOptions.redirectUrl != false) {
+                            location.href = this.formOptions.redirectUrl;
+                        } else {
+                            PNotify.success({
+                                title: 'AlRomeroNatural',
+                                text: requestResponse[0]['response'],
+                                icon: 'fab fa-wpforms'
+                            });
+                        }
                     } else {
                         PNotify.error({
                             title: 'AlRomeroNatural',

@@ -42,12 +42,17 @@ class Errors
         // //////////Success
         $errors['200001'] = array(
             'error_num' => '200001',
-            'error_text' => 'El usuario ingresó correctamente',
+            'error_text' => 'El usuario ingresó correctamente.',
             'error_type' => 'success'
         );
         $errors['200002'] = array(
             'error_num' => '200002',
-            'error_text' => 'Tu registro se realizó correctamente',
+            'error_text' => 'Tu registro se realizó correctamente.',
+            'error_type' => 'success'
+        );
+        $errors['200003'] = array(
+            'error_num' => '200003',
+            'error_text' => 'El usuario cerró session.',
             'error_type' => 'success'
         );
 

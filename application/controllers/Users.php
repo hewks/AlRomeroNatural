@@ -12,6 +12,17 @@ class Users extends CI_Controller
 
     function index()
     {
+        $fecha = date('Y-m-d H:i:s');
+        $user_data = $this->session->userdata();
+        if (isset($user_data['login'])) {
+            if ($user_data['login'] == true) {
+                if ($user_data['logout_date'] - strtotime($fecha) <= 0) {
+                    $array_items = array('id', 'username', 'email', 'name', 'lastname', 'login_date', 'login', 'logout_date');
+                    $this->session->unset_userdata($array_items);
+                }
+            }
+        }
+
         $header_data = array(
             'title' => 'Usuarios | Al Romero Natural',
             'keywords' => '',
@@ -68,12 +79,12 @@ class Users extends CI_Controller
                 'response' => $error['error_text']
             );
         } else {
-            $search = array(
+            $_search = array(
                 'search' => 'email',
                 'output' => 'id',
                 'value' => $login_data['email']
             );
-            if (!$this->Model_Customers->bool_search_with($search)) {
+            if (!$this->Model_Customers->bool_search_with($_search)) {
                 $error = $this->errors->return_error('100002');
                 $this->Model_Errors->create($this->errors->create_error_data($error['error_num']));
                 $output[] = array(
@@ -95,6 +106,19 @@ class Users extends CI_Controller
                         'status' => true,
                         'response' => $success['error_text']
                     );
+                    $_search = array(
+                        'search' => 'email',
+                        'output' => 'email,username,name,lastname,id',
+                        'value' => $login_data['email']
+                    );
+                    $user = (array) $this->Model_Customers->search_with_in($_search);
+                    $fecha = date('Y-m-d H:i:s');
+                    $array_items = array('id', 'username', 'email', 'name', 'lastname', 'login_date', 'login', 'logout_date');
+                    $this->session->unset_userdata($array_items);
+                    $user['login_date'] = strtotime($fecha);
+                    $user['logout_date'] = strtotime('+1 hour', strtotime($fecha));
+                    $user['login'] = true;
+                    $this->session->set_userdata((array) $user);
                 }
             }
         }
@@ -126,12 +150,12 @@ class Users extends CI_Controller
                 'response' => $error['error_text']
             );
         } else {
-            $search = array(
+            $_search = array(
                 'search' => 'email',
                 'output' => 'id',
                 'value' => $register_data['email']
             );
-            if ($this->Model_Customers->bool_search_with($search)) {
+            if ($this->Model_Customers->bool_search_with($_search)) {
                 $error = $this->errors->return_error('100004');
                 $this->Model_Errors->create($this->errors->create_error_data($error['error_num']));
                 $output[] = array(
@@ -157,6 +181,22 @@ class Users extends CI_Controller
             }
         }
 
+        echo json_encode($output);
+        exit();
+    }
+
+    function user_exit()
+    {
+        header('Content-Type: application/json');
+        $output = array();
+        $array_items = array('id', 'username', 'email', 'name', 'lastname', 'login_date', 'login', 'logout_date');
+        $this->session->unset_userdata($array_items);
+        $error = $this->errors->return_error('200003');
+        $this->Model_Errors->create($this->errors->create_error_data($error['error_num']));
+        $output[] = array(
+            'status' => true,
+            'response' => 'Hasta Luego. :)'
+        );
         echo json_encode($output);
         exit();
     }

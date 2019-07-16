@@ -38,7 +38,7 @@ sendFormButton.forEach((button) => {
             sendOptions = {
                 sendUrl: base_url + 'Users/email_login',
                 sendPhotos: false,
-                redirectUrl: base_url + 'Users/profile',
+                redirectUrl: base_url + 'Main',
                 validateTwoPass: false,
             }
         }
