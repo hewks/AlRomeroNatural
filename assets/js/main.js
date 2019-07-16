@@ -56,6 +56,7 @@ class HwForms {
     // sendPhotos: false, Bool
     // redirectUrl: base_url + 'Users', Url
     // validateTwoPass: true, Bool
+    // hashPasswords: true, Bool
 
     constructor(form, formOptions) {
         this.formOptions = formOptions;
@@ -120,7 +121,11 @@ class HwForms {
         if (this.validateForm()) {
             var formData = new FormData();
             this.form.forEach((input) => {
-                formData.append(input.name, input.value);
+                if (input.type == 'password' && this.formOptions.hashPasswords == true) {
+                    formData.append(input.name, md5(input.value));
+                } else {
+                    formData.append(input.name, input.value);
+                }
             });
 
             var request = new XMLHttpRequest();

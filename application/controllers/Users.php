@@ -52,7 +52,8 @@ class Users extends CI_Controller
 
         $footer_data = array(
             'scripts' => array(
-                'js/components/usersForms.js'
+                'vendor/md5.js',
+                'js/components/usersForms.js',
             )
         );
 

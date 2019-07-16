@@ -31,8 +31,9 @@ sendFormButton.forEach((button) => {
             sendOptions = {
                 sendUrl: base_url + 'Users/email_register',
                 sendPhotos: false,
-                redirectUrl: base_url + 'Users',
+                redirectUrl: false,
                 validateTwoPass: true,
+                hashPasswords: true,
             }
         } else if (button.dataset.send == 'hw-login-form') {
             sendOptions = {
@@ -40,6 +41,7 @@ sendFormButton.forEach((button) => {
                 sendPhotos: false,
                 redirectUrl: base_url + 'Main',
                 validateTwoPass: false,
+                hashPasswords: true,
             }
         }
         var sendForm = new HwForms(form, sendOptions);

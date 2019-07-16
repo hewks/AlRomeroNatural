@@ -25,7 +25,7 @@ class Errors
         );
         $errors['100003'] = array(
             'error_num' => '100003',
-            'error_text' => 'Tu contrase&ntilde;a es incorrecta.',
+            'error_text' => 'Tu contraseña es incorrecta.',
             'error_type' => 'fail'
         );
         $errors['100004'] = array(
