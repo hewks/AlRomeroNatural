@@ -28,11 +28,26 @@ class Errors
             'error_text' => 'Tu contrase&ntilde;a es incorrecta.',
             'error_type' => 'fail'
         );
+        $errors['100004'] = array(
+            'error_num' => '100004',
+            'error_text' => 'El email ya esta en uso.',
+            'error_type' => 'fail'
+        );
+        $errors['100005'] = array(
+            'error_num' => '100005',
+            'error_text' => 'No fue posible el registro, intenta más tarde.',
+            'error_type' => 'error'
+        );
 
         // //////////Success
         $errors['200001'] = array(
             'error_num' => '200001',
             'error_text' => 'El usuario ingresó correctamente',
+            'error_type' => 'success'
+        );
+        $errors['200002'] = array(
+            'error_num' => '200002',
+            'error_text' => 'Tu registro se realizó correctamente',
             'error_type' => 'success'
         );
 

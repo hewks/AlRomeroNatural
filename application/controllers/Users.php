@@ -54,7 +54,6 @@ class Users extends CI_Controller
     {
         header('Content-Type: application/json');
         $output = array();
-        $fecha = date('Y-m-d H:i:s');
 
         $login_data = array(
             'email' => $this->input->post('email'),
@@ -91,6 +90,64 @@ class Users extends CI_Controller
                     );
                 } else {
                     $success = $this->errors->return_error('200001');
+                    $this->Model_Errors->create($this->errors->create_error_data($success['error_num']));
+                    $output[] = array(
+                        'status' => true,
+                        'response' => $success['error_text']
+                    );
+                }
+            }
+        }
+
+        echo json_encode($output);
+        exit();
+    }
+
+    function email_register()
+    {
+        header('Content-Type: application/json');
+        $output = array();
+        $fecha = date('Y-m-d H:i:s');
+
+        $register_data = array(
+            'email' => $this->input->post('email'),
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password'),
+            'name' => $this->input->post('name'),
+            'lastname' => $this->input->post('lastname'),
+            'created_at' => $fecha,
+        );
+
+        if (!$this->genetic->validate_array($register_data)) {
+            $error = $this->errors->return_error('100001');
+            $this->Model_Errors->create($this->errors->create_error_data($error['error_num']));
+            $output[] = array(
+                'status' => false,
+                'response' => $error['error_text']
+            );
+        } else {
+            $search = array(
+                'search' => 'email',
+                'output' => 'id',
+                'value' => $register_data['email']
+            );
+            if ($this->Model_Customers->bool_search_with($search)) {
+                $error = $this->errors->return_error('100004');
+                $this->Model_Errors->create($this->errors->create_error_data($error['error_num']));
+                $output[] = array(
+                    'status' => false,
+                    'response' => $error['error_text']
+                );
+            } else {
+                if (!$this->Model_Customers->create($register_data)) {
+                    $error = $this->errors->return_error('100005');
+                    $this->Model_Errors->create($this->errors->create_error_data($error['error_num']));
+                    $output[] = array(
+                        'status' => false,
+                        'response' => $error['error_text']
+                    );
+                } else {
+                    $success = $this->errors->return_error('200002');
                     $this->Model_Errors->create($this->errors->create_error_data($success['error_num']));
                     $output[] = array(
                         'status' => true,
