@@ -39,6 +39,19 @@ General Styles
     background-color: rgb(190, 166, 138);
 }
 
+.hw-theme-bg-tr {
+    background-color: rgba(192, 185, 176, 0.432);
+}
+
+
+.hw-theme-select {
+    overflow: hidden;
+}
+
+.hw-theme-select>select {
+    margin-right: -15px;
+}
+
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgb(246, 225, 203);
@@ -361,7 +374,13 @@ Forms Styles
         padding: 45px;
         border-radius: 10px;
     }
+}
 
+.hw-theme-user-form>.hw-form-title {
+    color: rgb(246, 225, 203);
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Angelina Vintage';
 }
 
 .hw-theme-user-form.hw-active-form {
@@ -418,4 +437,18 @@ Forms Styles
 
 .hw-theme-user-form>.hw-btn:hover {
     background: rgb(199, 185, 169);
+}
+
+/* ///////////////////////////////////////////////
+Profile Styles
+/////////////////////////////////////////////// */
+
+.hw-profile-avatar {
+    height: 350px;
+    width: 90vw;
+    max-width: 350px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
 }

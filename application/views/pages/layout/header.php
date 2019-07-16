@@ -19,17 +19,18 @@
         </script>
     <?php endif; ?>
 
-    <style>
+    <?=
+        '<style>
         @font-face {
             font-family: "Chalk Hand";
-            src: url("assets/fonts/chalk-hand-lettering-shaded.otf") format("opentype");
+            src: url("' . base_url() . 'assets/fonts/chalk-hand-lettering-shaded.otf") format("opentype");
         }
-
         @font-face {
             font-family: "Angelina Vintage";
-            src: url("assets/fonts/angeline-vintage.otf") format("opentype");
+            src: url("' . base_url() . 'assets/fonts/angeline-vintage.otf") format("opentype");
         }
-    </style>
+    </style>'
+    ?>
 
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/pnotify/css/pnotify.css">
@@ -57,11 +58,11 @@
             <header class="hw-header-navigation">
                 <a href="<?= base_url() ?>" class="hw-header-link">Jabones</a>
                 <?php if ($this->session->userdata('login')) : ?>
-                    <a href="#" class="hw-header-link">Mi Perfil</a>
+                    <a href="<?= base_url() ?>Users/Profile" class="hw-header-link">Mi Perfil</a>
                     <a href="#" class="hw-header-link hw-exit-link hw-exit-button">Salir</a>
                 <?php else : ?>
                     <a href="<?= base_url() ?>Users" class="hw-header-link">Ingreso</a>
-                    <a href="<?= base_url() ?>Users?register=1" class="hw-header-link">Registro</a>
+                    <a href="<?= base_url() ?>Users/Index/Register" class="hw-header-link">Registro</a>
                 <?php endif; ?>
                 <div id="hw-navigation-toggler" class="hw-header-brand">
                     <h1>Al Romero Natural</h1>
@@ -83,11 +84,11 @@
                 </div>
                 <div class="hw-sidebar-links-container">
                     <?php if ($this->session->userdata('login')) : ?>
-                        <a href="#" class="hw-sidebar-link">Mi Perfil</a>
+                        <a href="<?= base_url() ?>Users/Profile" class="hw-sidebar-link">Mi Perfil</a>
                         <a href="#" class="hw-sidebar-link hw-exit hw-exit-button">Salir</a>
                     <?php else : ?>
                         <a href="<?= base_url() ?>Users" class="hw-sidebar-link">Ingreso</a>
-                        <a href="<?= base_url() ?>Users?register=1" class="hw-sidebar-link">Registro</a>
+                        <a href="<?= base_url() ?>Users/Index/Register" class="hw-sidebar-link">Registro</a>
                     <?php endif; ?>
                 </div>
                 <div class="hw-sidebar-title">

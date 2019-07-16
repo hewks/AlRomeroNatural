@@ -23,7 +23,8 @@ document.getElementById('hw-navigation-toggler').addEventListener('click', () =>
 
 var exitButtons = document.querySelectorAll('.hw-exit-button');
 exitButtons.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
         userExit();
     });
 });
@@ -36,10 +37,31 @@ function userExit() {
         if (request.readyState == 200 || request.readyState == 4) {
             var requestResponse = JSON.parse(request.responseText);
             if (requestResponse[0]['status'] == true) {
-                location.reload();
+                location.href = base_url + 'Main';
             }
         }
     }
+}
+
+//////////////////////////////////////
+// Multi Form
+//////////////////////////////////////
+
+function addMultiFormSelector() {
+    var selectorButtons = document.querySelectorAll('.hw-btn-form-selector');
+    var forms = document.querySelectorAll('.hw-theme-user-form');
+
+    selectorButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            var activeButton = document.querySelector('.hw-active-selector');
+            activeButton.classList.remove('hw-active-selector');
+            button.classList.add('hw-active-selector');
+            forms.forEach((form) => {
+                form.classList.remove('hw-active-form');
+            });
+            document.getElementById(button.dataset.form).classList.add('hw-active-form');
+        });
+    });
 }
 
 //////////////////////////////////////
@@ -57,6 +79,7 @@ class HwForms {
     // redirectUrl: base_url + 'Users', Url
     // validateTwoPass: true, Bool
     // hashPasswords: true, Bool
+    // reloadUrl: true, Bool
 
     constructor(form, formOptions) {
         this.formOptions = formOptions;
@@ -129,7 +152,6 @@ class HwForms {
             });
 
             var request = new XMLHttpRequest();
-
             request.open("POST", this.formOptions.sendUrl);
             request.send(formData);
 
@@ -139,6 +161,8 @@ class HwForms {
                     if (requestResponse[0]['status'] == true) {
                         if (this.formOptions.redirectUrl != false) {
                             location.href = this.formOptions.redirectUrl;
+                        } else if (this.formOptions.reloadUrl == true) {
+                            location.reload();
                         } else {
                             PNotify.success({
                                 title: 'AlRomeroNatural',

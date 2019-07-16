@@ -50,4 +50,12 @@ class Model_Genetic extends CI_Model
         // depends the table
         return ($this->db->insert($this->tab, $new_data)) ? true : false;
     }
+
+    function update_with_id($edit_data)
+    {
+        // $edit_data format
+        // depends the table
+        $this->db->where('id', $edit_data['id']);
+        return ($this->db->update($this->tab, $edit_data)) ? true : false;
+    }
 }

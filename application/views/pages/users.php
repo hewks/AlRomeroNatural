@@ -32,6 +32,14 @@
             <div class="hw-form-group">
                 <input type="text" name="lastname" class="hw-form-input" data-name="Apellido" placeholder="Apellido" require>
             </div>
+            <div class="hw-form-group hw-theme-select">
+                <select name="genre" class="hw-form-input" data-name="Genero" placeholder="Genero">
+                    <option value="">Elegir</option>
+                    <option value="2">Femenino</option>
+                    <option value="1">Masculino</option>
+                    <option value="3">Otro</option>
+                </select>
+            </div>
             <button class="hw-btn hw-send-form" data-send="hw-register-form">Registrar</button>
         </form>
     </div>

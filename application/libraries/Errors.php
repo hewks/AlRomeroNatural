@@ -38,6 +38,11 @@ class Errors
             'error_text' => 'No fue posible el registro, intenta más tarde.',
             'error_type' => 'error'
         );
+        $errors['100006'] = array(
+            'error_num' => '100006',
+            'error_text' => 'No fue posible editar tu usuario, intenta más tarde.',
+            'error_type' => 'error'
+        );
 
         // //////////Success
         $errors['200001'] = array(
@@ -55,6 +60,11 @@ class Errors
             'error_text' => 'El usuario cerró session.',
             'error_type' => 'success'
         );
+        $errors['200004'] = array(
+            'error_num' => '200004',
+            'error_text' => 'Tu usuario fue editado.',
+            'error_type' => 'success'
+        );
 
         $this->errors = $errors;
     }
@@ -64,7 +74,7 @@ class Errors
         return $this->errors[$error_number];
     }
 
-    function create_error_data($error_number)
+    function create_error_data($error_number, $user_id = 99999)
     {
         $fecha = date('Y-m-d H:i:s');
         $error = $this->return_error($error_number);
@@ -72,7 +82,8 @@ class Errors
             'type' => $error['error_type'],
             'error' => $error['error_num'],
             'error_text' => $error['error_text'],
-            'created_at' => $fecha
+            'user_id' => $user_id,
+            'created_at' => $fecha,
         );
         return $error_data;
     }

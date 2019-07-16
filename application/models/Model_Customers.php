@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Model_Customers extends Model_Genetic
 {
     protected $tab = 'customers_register';
-    protected $cells = ['email', 'username', 'name', 'lastname'];
+    protected $cells = ['email', 'username', 'name', 'lastname', 'genre', 'avatar_url'];
     protected $select;
 
     function __construct()
