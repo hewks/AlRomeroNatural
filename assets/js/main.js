@@ -51,8 +51,9 @@ class HwForms {
         if (this.formOtions['validateTwoPass'] == true) {
             if (!this.validateTwoPass()) {
                 PNotify.error({
-                    title: 'Form',
-                    text: 'Las Contraseñas no coinciden'
+                    title: ':(',
+                    text: 'Las Contraseñas no coinciden',
+                    icon: 'fab fa-wpforms'
                 });
                 return false;
             }
@@ -79,8 +80,9 @@ class HwForms {
             });
             // Change to pnotify
             PNotify.error({
-                title: 'Form',
-                text: errorList
+                title: 'Debes llenar todos los campos:',
+                text: errorList,
+                icon: 'fab fa-wpforms'
             });
             errors[0].focus();
             return false;
@@ -106,13 +108,15 @@ class HwForms {
                     var requestResponse = JSON.parse(request.responseText);
                     if (requestResponse[0]['status'] == true) {
                         PNotify.success({
-                            title: 'Form',
-                            text: requestResponse[0]['response']
+                            title: 'AlRomeroNatural',
+                            text: requestResponse[0]['response'],
+                            icon: 'fab fa-wpforms'
                         });
                     } else {
                         PNotify.error({
-                            title: 'Form',
-                            text: requestResponse[0]['response']
+                            title: 'AlRomeroNatural',
+                            text: requestResponse[0]['response'],
+                            icon: 'fab fa-wpforms'
                         });
                     }
                 }

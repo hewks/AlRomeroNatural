@@ -27,6 +27,8 @@
 <script src="<?= base_url() ?>assets/vendor/fontawesome/js/all.min.js"></script>
 <script src="<?= base_url() ?>assets/vendor/pnotify/js/PNotify.js"></script>
 <script src="<?= base_url() ?>assets/vendor/pnotify/js/PNotifyMobile.js"></script>
+<script src="<?= base_url() ?>assets/vendor/pnotify/js/PNotifyAnimate.js"></script>
+<script src="<?= base_url() ?>assets/vendor/pnotify/js/PNotifyDesktop.js"></script>
 
 <script src="<?= base_url() ?>assets/js/main.js"></script>
 

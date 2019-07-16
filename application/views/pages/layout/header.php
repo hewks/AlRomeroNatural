@@ -34,6 +34,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/pnotify/css/pnotify.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/pnotify/css/pnotify.mobile.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/pnotify/css/pnotify.history.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/pnotify/css/pnotify.buttons.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/pnotify/css/pnotifybrighttheme.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/layout.css">
