@@ -94,15 +94,17 @@ class HwForms {
             var request = new XMLHttpRequest();
 
             request.open("POST", this.formOtions.sendUrl);
+            request.send(formData);
 
             request.onreadystatechange = () => {
                 if (request.readyState == 200 || request.readyState == 4) {
                     var requestResponse = JSON.parse(request.responseText);
                     if (requestResponse[0]['status'] == true) {
-
+                        // Change to Pnotify
+                        alert(requestResponse[0]['response']);
                     } else {
                         // Change to Pnotify
-                        alert('Hubo un error en la consulta')
+                        alert(requestResponse[0]['response']);
                     }
                 }
             }
