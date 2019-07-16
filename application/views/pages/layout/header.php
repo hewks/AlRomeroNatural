@@ -50,9 +50,9 @@
         <div class="hw-navigation">
 
             <header class="hw-header-navigation">
-                <a href="#" class="hw-header-link">Jabones</a>
-                <a href="#" class="hw-header-link">Ingreso</a>
-                <a href="#" class="hw-header-link">Registro</a>
+                <a href="<?= base_url() ?>" class="hw-header-link">Jabones</a>
+                <a href="<?= base_url() ?>Users" class="hw-header-link">Ingreso</a>
+                <a href="<?= base_url() ?>Users?register=1" class="hw-header-link">Registro</a>
                 <div id="hw-navigation-toggler" class="hw-header-brand">
                     <h1>Al Romero Natural</h1>
                 </div>
@@ -66,14 +66,14 @@
                     <span>Productos</span>
                 </div>
                 <div class="hw-sidebar-links-container">
-                    <a href="#" class="hw-sidebar-link">Jabones</a>
+                    <a href="<?= base_url() ?>" class="hw-sidebar-link">Jabones</a>
                 </div>
                 <div class="hw-sidebar-title">
                     <span>Usuarios</span>
                 </div>
                 <div class="hw-sidebar-links-container">
-                    <a href="#" class="hw-sidebar-link">Ingreso</a>
-                    <a href="#" class="hw-sidebar-link">Registro</a>
+                    <a href="<?= base_url() ?>Users" class="hw-sidebar-link">Ingreso</a>
+                    <a href="<?= base_url() ?>Users?register=1" class="hw-sidebar-link">Registro</a>
                 </div>
                 <div class="hw-sidebar-title">
                     <span>Nuestra Tienda</span>

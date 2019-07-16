@@ -1,4 +1,4 @@
-<h1 class="hw-font-theme hw-text-center">Jabones Naturales</h1>
+<h1 class="hw-font-theme hw-text-center hw-pb-25">Jabones Naturales</h1>
 <div class="hw-theme-line"></div>
 <div class="hw-fluid-container">
     <div class="hw-row-container">

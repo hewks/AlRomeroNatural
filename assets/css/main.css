@@ -29,6 +29,18 @@ a:focus {
     outline: none;
 }
 
+button:active {
+    outline: 0;
+}
+
+button:focus {
+    outline: 0;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
 p {
     padding-bottom: 5px;
     font-size: 11px;
@@ -70,6 +82,11 @@ p {
     margin: 0 auto;
 }
 
+.hw-full-page-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 .hw-fluid-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -107,6 +124,10 @@ p {
     align-items: center;
 }
 
+.hw-flex-column {
+    flex-direction: column;
+}
+
 .hw-text-center {
     text-align: center;
 }
@@ -135,6 +156,10 @@ p {
     margin-top: 50px;
 }
 
+.hw-mt-20 {
+    margin-top: 20px;
+}
+
 .hw-mt-10 {
     margin-top: 10px;
 }
@@ -143,14 +168,40 @@ p {
     margin-top: 25px;
 }
 
+.hw-sm-mt-20 {
+    margin-top: 20px;
+}
+
 .hw-mb-25 {
     margin-bottom: 25px;
+}
+
+.hw-mb-50 {
+    margin-bottom: 50px;
+}
+
+.hw-sm-mb-50 {
+    margin-bottom: 50px;
+}
+
+@media screen and (min-width: 720px) {
+    .hw-sm-mb-50 {
+        margin-bottom: 0;
+    }
+
+    .hw-sm-mt-20 {
+        margin-top: 0;
+    }
 }
 
 /* Paddings */
 
 .hw-pb-12 {
     padding-bottom: 12px;
+}
+
+.hw-pb-25 {
+    padding-bottom: 25px;
 }
 
 /* /////////// Figures /////////// */
@@ -169,6 +220,7 @@ Page Styles
     max-height: 100vh;
     overflow: hidden;
     position: relative;
+    overflow-y: unset;
 }
 
 /* ///////////////////////////////////////////////

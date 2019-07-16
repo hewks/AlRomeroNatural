@@ -14,6 +14,8 @@ General Styles
     font-family: 'Angelina Vintage';
     font-weight: lighter;
     color: rgb(246, 225, 203);
+    line-height: 35px;
+    font-size: 35px;
 }
 
 .hw-font-theme-2 {
@@ -37,6 +39,22 @@ General Styles
     background-color: rgb(190, 166, 138);
 }
 
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(246, 225, 203);
+    opacity: 1;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgb(246, 225, 203);
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgb(246, 225, 203);
+}
 
 /* /////////// Background /////////// */
 
@@ -279,4 +297,125 @@ Footer Styles
 
 .hw-footer>span>a {
     color: rgb(246, 225, 203);
+}
+
+/* ///////////////////////////////////////////////
+Forms Styles
+/////////////////////////////////////////////// */
+
+.hw-form-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.hw-form-selector>.hw-btn-form-selector {
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font-size: 34px;
+    color: rgb(246, 225, 203);
+    font-family: 'Angelina Vintage';
+    position: relative;
+    line-height: 25px;
+    padding-bottom: 25px;
+    cursor: pointer;
+}
+
+.hw-form-selector>.hw-btn-form-selector::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    bottom: 0;
+    left: 25%;
+    background: rgb(246, 225, 203);
+    transition: all 0.4s ease;
+}
+
+.hw-form-selector>.hw-btn-form-selector.hw-active-selector::before {
+    width: 80%;
+    left: 10%;
+    height: 3px;
+}
+
+.hw-form-selector>.hw-btn-form-selector:hover::before {
+    width: 80%;
+    left: 10%;
+}
+
+.hw-theme-user-form {
+    display: none;
+    width: 90%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.164);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 720px) {
+    .hw-theme-user-form {
+        padding: 45px;
+        border-radius: 10px;
+    }
+
+}
+
+.hw-theme-user-form.hw-active-form {
+    display: block;
+}
+
+.hw-theme-user-form>.hw-form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.hw-theme-user-form>.hw-form-group>label {
+    padding-bottom: 5px;
+    color: rgb(246, 225, 203);
+}
+
+.hw-theme-user-form>.hw-form-group>.hw-form-input {
+    background: transparent;
+    color: rgb(255, 255, 255);
+    border: 0;
+    border-bottom: 1px solid rgb(246, 225, 203);
+    padding: 14px 20px;
+    transition: all 0.2s ease;
+}
+
+.hw-theme-user-form>.hw-form-group>.hw-form-input:hover {
+    background-color: rgba(246, 225, 203, 0.336);
+}
+
+.hw-theme-user-form>.hw-form-group>.hw-form-input:focus {
+    background-color: rgba(246, 225, 203, 0.336);
+}
+
+.hw-theme-user-form>.hw-form-group>.hw-form-input:active {
+    background-color: rgba(246, 225, 203, 0.336);
+}
+
+.hw-theme-user-form>.hw-btn {
+    background: rgb(246, 225, 203);
+    border: 0;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    height: 40px;
+    width: 110px;
+    color: black;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 35px;
+    transition: all 0.4s ease;
+}
+
+.hw-theme-user-form>.hw-btn:hover {
+    background: rgb(199, 185, 169);
 }
