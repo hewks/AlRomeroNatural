@@ -13,6 +13,8 @@
 
     <title><?= $title ?></title>
 
+    <link rel="shortcut icon" href="<?= base_url() ?>assets/images/icons/logo3.png">
+
     <?php if ($options['google_analitics']) : ?>
         <script>
             alert('Google');
