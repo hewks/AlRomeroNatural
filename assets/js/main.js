@@ -50,8 +50,10 @@ class HwForms {
         var errors = []
         if (this.formOtions['validateTwoPass'] == true) {
             if (!this.validateTwoPass()) {
-                // Change to Pnotify
-                alert('Las contraseñas no coinciden');
+                PNotify.error({
+                    title: 'Form',
+                    text: 'Las Contraseñas no coinciden'
+                });
                 return false;
             }
         }
@@ -76,7 +78,10 @@ class HwForms {
                 errorList += error.dataset.name + '\n';
             });
             // Change to pnotify
-            alert(errorList);
+            PNotify.error({
+                title: 'Form',
+                text: errorList
+            });
             errors[0].focus();
             return false;
         } else {
@@ -100,11 +105,15 @@ class HwForms {
                 if (request.readyState == 200 || request.readyState == 4) {
                     var requestResponse = JSON.parse(request.responseText);
                     if (requestResponse[0]['status'] == true) {
-                        // Change to Pnotify
-                        alert(requestResponse[0]['response']);
+                        PNotify.success({
+                            title: 'Form',
+                            text: requestResponse[0]['response']
+                        });
                     } else {
-                        // Change to Pnotify
-                        alert(requestResponse[0]['response']);
+                        PNotify.error({
+                            title: 'Form',
+                            text: requestResponse[0]['response']
+                        });
                     }
                 }
             }

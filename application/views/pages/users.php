@@ -24,7 +24,7 @@
                 <input type="password" name="password" id="password_1" class="hw-form-input" data-name="Contraseña" placeholder="Contraseña" require>
             </div>
             <div class="hw-form-group">
-                <input type="password" name="password_2" id="password_2" class="hw-form-input" data-name="Contraseña" placeholder="Contraseña" require>
+                <input type="password" name="password_2" id="password_2" class="hw-form-input" data-name="Repetir Contraseña" placeholder="Contraseña" require>
             </div>
             <div class="hw-form-group">
                 <input type="text" name="name" class="hw-form-input" data-name="Nombre" placeholder="Nombre" require>
