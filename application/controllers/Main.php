@@ -18,7 +18,7 @@ class Main extends CI_Controller
 
 		$footer_data = array(
 			'scripts' => array(
-				'js/components/simpleSlider.js'
+				'js/components/mainPage.js'
 			)
 		);
 

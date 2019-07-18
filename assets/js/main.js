@@ -181,5 +181,78 @@ class HwForms {
             }
         }
     }
+}
 
+//////////////////////////////////////
+// Simple Slider
+//////////////////////////////////////
+
+class SimpleSliders {
+    constructor(sliderId, sliderCount) {
+        this.sliders = document.querySelectorAll('.hw-ss');
+        this.sliderControls = document.querySelectorAll('.hw-simple-slider-control');
+        this.sliderCount = sliderCount;
+        this.sliderId = sliderId;
+        this.slider = document.getElementById(sliderId);
+        this.createPrincipalClass();
+    }
+
+    createInitSliders() {
+        this.sliderCount.forEach((count) => {
+            this.sliders[count].classList.add('hw-active-slider-' + (count + 1));
+        });
+    }
+
+    activateSliders() {
+        this.sliderControls.forEach((control) => {
+            control.addEventListener('click', () => {
+                this.sliderCount.forEach((count, index) => {
+                    this.sliders[count].classList.remove('hw-active-slider-' + (index + 1));
+                });
+                this.sliderCount.forEach((count, index) => {
+                    if (control.dataset.toggle == 'next') {
+                        if (this.sliderCount[index] < this.sliders.length - 1) {
+                            this.sliderCount[index] += 1;
+                        } else {
+                            this.sliderCount[index] = 0;
+                        }
+                    } else if (control.dataset.toggle == 'back') {
+                        if (this.sliderCount[index] > 0) {
+                            this.sliderCount[index] -= 1;
+                        } else {
+                            this.sliderCount[index] = this.sliders.length - 1;
+                        }
+                    }
+                });
+                this.sliderCount.forEach((count, index) => {
+                    this.sliders[count].classList.add('hw-active-slider-' + (index + 1));
+                });
+                this.showCount();
+            });
+        });
+    }
+
+    createPrincipalClass() {
+        switch (this.sliderCount.length) {
+            case 2:
+                this.slider.classList.add('hw-sl-50');
+                break;
+            case 3:
+                this.slider.classList.add('hw-sl-33');
+                break;
+            case 4:
+                this.slider.classList.add('hw-sl-25');
+                break;
+            case 5:
+                this.slider.classList.add('hw-sl-20');
+                break;
+            case 6:
+                this.slider.classList.add('hw-sl-16');
+                break;
+        }
+    }
+
+    showCount() {
+        console.log(this.sliderCount);
+    }
 }
