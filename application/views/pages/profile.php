@@ -19,6 +19,12 @@
                 <div class="hw-form-group">
                     <input type="text" name="username" data-name="Nombre de usuario" class="hw-form-input" value="<?= $username ?>" placeholder="Nombre de Usuario">
                 </div>
+                <div class="hw-form-group">
+                    <input type="text" name="document" data-name="Documento" class="hw-form-input" value="<?= $document ?>" placeholder="Documento">
+                </div>
+                <div class="hw-form-group">
+                    <input type="text" name="phone" data-name="Celular" class="hw-form-input" value="<?= $phone ?>" placeholder="Celular">
+                </div>
                 <input type="hidden" name="id" class="hw-form-input" value="<?= $id ?>">
                 <button class="hw-btn hw-send-form" data-send="hw-edit-form">Guardar</button>
             </form>

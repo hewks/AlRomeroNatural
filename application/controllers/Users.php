@@ -95,7 +95,7 @@ class Users extends CI_Controller
 
         $_search = array(
             'search' => 'id',
-            'output' => 'id,name,lastname,username,avatar_url',
+            'output' => 'id,name,lastname,username,avatar_url,document,phone',
             'value' => $this->session->userdata('id')
         );
         $user_data = (array) $this->Model_Customers->search_with_in($_search);
@@ -106,6 +106,8 @@ class Users extends CI_Controller
             'name' => $user_data['name'],
             'lastname' => $user_data['lastname'],
             'username' => $user_data['username'],
+            'document' => $user_data['document'],
+            'phone' => $user_data['phone'],
             'id' => $user_data['id'],
         );
 
@@ -165,16 +167,16 @@ class Users extends CI_Controller
                     $output[] = array(
                         'status' => true,
                         'response' => $success['error_text']
-                    );
+                    );                                   
+                    $fecha = date('Y-m-d H:i:s');
+                    $array_items = array('id', 'username', 'email', 'name', 'document', 'phone', 'lastname', 'login_date', 'login', 'logout_date', 'avatar_url', 'genre');
+                    $this->session->unset_userdata($array_items);
                     $_search = array(
                         'search' => 'email',
-                        'output' => 'email,username,name,lastname,id,genre,avatar_url',
+                        'output' => 'email,username,name,lastname,id,genre,document,phone,avatar_url',
                         'value' => $login_data['email']
-                    );
+                    );     
                     $user = (array) $this->Model_Customers->search_with_in($_search);
-                    $fecha = date('Y-m-d H:i:s');
-                    $array_items = array('id', 'username', 'email', 'name', 'lastname', 'login_date', 'login', 'logout_date', 'avatar_url', 'genre');
-                    $this->session->unset_userdata($array_items);
                     $user['login_date'] = strtotime($fecha);
                     $user['logout_date'] = strtotime('+1 hour', strtotime($fecha));
                     $user['login'] = true;
