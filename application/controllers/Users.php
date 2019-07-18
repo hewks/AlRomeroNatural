@@ -178,6 +178,7 @@ class Users extends CI_Controller
                     $user['login_date'] = strtotime($fecha);
                     $user['logout_date'] = strtotime('+1 hour', strtotime($fecha));
                     $user['login'] = true;
+                    $user['session_code'] = 'Customer';
                     $this->session->set_userdata((array) $user);
                 }
             }
