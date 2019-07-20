@@ -102,26 +102,53 @@ function sendFormData(sendFormOtions, formData) {
         dataObj.append(data.name, data.value);
     });
 
-    request.open("POST", sendFormOtions.sendFormUrl);
-    request.send(dataObj);
-
-    request.onreadystatechange = () => {
-        if (request.readyState == 200 || request.readyState == 4) {
-            var requestResponse = JSON.parse(request.responseText);
-            if (requestResponse[0]['status'] == true) {
-                if (sendFormOtions.redirectUrl != false) {
-                    window.location.href = sendFormOtions.redirectUrl;
-                } else {
+    if (sendFormOtions.sendImages) {
+        var fileInput = sendFormOtions.fileInput;
+        dataObj.append('image', fileInput.files[0])
+        $.ajax({
+            url: sendFormOtions.sendFormUrl,
+            type: 'POST',
+            contentType: false,
+            data: dataObj,
+            processData: false,
+            cache: false,
+            success: (response) => {
+                if (response[0]['status'] == true) {
                     PNotify.success({
+                        title: sendFormOtions.moduleTitle,
+                        text: response[0]['response']
+                    });
+                } else {
+                    PNotify.error({
+                        title: sendFormOtions.moduleTitle,
+                        text: response[0]['response']
+                    });
+                }
+            }
+        });
+    } else {
+
+        request.open("POST", sendFormOtions.sendFormUrl);
+        request.send(dataObj);
+
+        request.onreadystatechange = () => {
+            if (request.readyState == 200 || request.readyState == 4) {
+                var requestResponse = JSON.parse(request.responseText);
+                if (requestResponse[0]['status'] == true) {
+                    if (sendFormOtions.redirectUrl != false) {
+                        window.location.href = sendFormOtions.redirectUrl;
+                    } else {
+                        PNotify.success({
+                            title: sendFormOtions.moduleTitle,
+                            text: requestResponse[0]['response']
+                        });
+                    }
+                } else {
+                    PNotify.error({
                         title: sendFormOtions.moduleTitle,
                         text: requestResponse[0]['response']
                     });
                 }
-            } else {
-                PNotify.error({
-                    title: sendFormOtions.moduleTitle,
-                    text: requestResponse[0]['response']
-                });
             }
         }
     }
@@ -144,10 +171,10 @@ function fillSelects(selectsData) {
     var selects = document.querySelectorAll('.' + selectsData['selects']);
     var data = selectsData['data'];
 
-    selects.forEach(function(select){
+    selects.forEach(function (select) {
         select.innerHTML = '';
     });
-    
+
     switch (selectsData['selects']) {
         case 'productSelect':
             selects.forEach(function (select) {

@@ -12,14 +12,16 @@ document.getElementById('bs-send-form-button').addEventListener('click', e => {
         validateTwoPass: false,
         moduleTitle: moduleName,
         sendForm: true,
-        passwordHash: false
+        passwordHash: false,
+        sendImages: true
     };
 
     sendFormOtions = {
         moduleTitle: moduleName,
         sendFormUrl: base_url + 'BackOffice/' + moduleName + '/add',
         redirectUrl: false,
-        sendImages: false,
+        sendImages: true,
+        fileInput: document.getElementById('bs-upload-create-file')
     }
 
     validateForm(validateFormOptions, sendFormOtions);
@@ -54,14 +56,16 @@ function editSection() {
         validateTwoPass: false,
         moduleTitle: moduleName,
         sendForm: true,
-        passwordHash: false
+        passwordHash: false,
+        sendImages: true
     };
 
     sendFormOtions = {
         moduleTitle: moduleName,
         sendFormUrl: base_url + 'BackOffice/' + moduleName + '/edit',
         redirectUrl: false,
-        sendImages: false,
+        sendImages: true,
+        fileInput: document.getElementById('bs-upload-edit-file')
     }
 
     validateForm(validateFormOptions, sendFormOtions, '#editModal .bs-admin-input');
@@ -95,6 +99,9 @@ function requestEditData(moduleName, id) {
 
 function fillEditModal(data) {
     var editForm = document.querySelectorAll('#editModal .bs-admin-input');
+    var imageEdit = document.getElementById('bs-image-edit');
+    imageEdit.style.backgroundImage = 'url(\'' + base_url + 'assets/images/productos/' + data.image_url + '\')';
+    console.log(imageEdit);
     editForm.forEach(input => {
         switch (input.name) {
             case 'product': input.value = data.product_name; break;

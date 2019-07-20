@@ -61,7 +61,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="bs-admin-form" id="bs-send-form">
+                <form class="bs-admin-form" id="bs-send-form" enctype="multipart/form-data">
                     <div class="bs-admin-form-group">
                         <label for="product">Producto</label>
                         <input type="text" name="product" data-name="Producto" class="bs-admin-input">
@@ -88,10 +88,10 @@
                         <label for="shortDescription">Descripcion Corta</label>
                         <input type="text" name="shortDescription" data-name="Descripcion Corta" class="bs-admin-input">
                     </div>
-                    <!-- <div class="bs-admin-form-group">
+                    <div class="bs-admin-form-group">
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" data-name="Imagen" class="bs-admin-input">
-                    </div> -->
+                        <input type="file" name="image" id="bs-upload-create-file" data-name="Imagen" class="bs-admin-input">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -114,6 +114,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div id="bs-image-edit" class="bs-image-edit"></div>
                 <form class="bs-admin-form" id="bs-edit-form">
                     <div class="bs-admin-form-group">
                         <label for="product">Producto</label>
@@ -144,10 +145,10 @@
                         <label for="stock">Ineventario</label>
                         <input type="text" name="stock" data-name="Inventario" class="bs-admin-input">
                     </div>
-                    <!-- <div class="bs-admin-form-group">
+                    <div class="bs-admin-form-group">
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" data-name="Imagen" class="bs-admin-input">
-                    </div> -->
+                        <input type="file" name="image" data-name="Imagen" id="bs-upload-edit-file" class="bs-admin-input">
+                    </div>
                     <input type="hidden" name="id" data-name="ID" class="bs-admin-input">
                 </form>
             </div>

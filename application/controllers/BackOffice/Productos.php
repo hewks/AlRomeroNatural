@@ -138,7 +138,6 @@ class Productos extends CI_Controller
             'discount' => $this->input->post('discount'),
             'large_description' => $this->input->post('largeDescription'),
             'short_description' => $this->input->post('shortDescription'),
-            'image_url' => 'relase',
             'created_at' => $fecha,
             'updated_at' => $fecha
         );
@@ -155,16 +154,33 @@ class Productos extends CI_Controller
                     'response' => 'El producto ya se encuentra en la base de datos.'
                 );
             } else {
-                if (!$this->Model_Product->create($new_data)) {
+                if (!isset($_FILES['image'])) {
                     $output[] = array(
                         'status' => false,
-                        'response' => 'No fue posible agregar el producto.'
+                        'response' => 'No se encontró ninguna imagen, prueba con una más pequeña.'
                     );
                 } else {
-                    $output[] = array(
-                        'status' => true,
-                        'response' => 'El producto se registró correctamente.'
-                    );
+                    $image_name = $_FILES['image']['name'];
+                    $image_destiny = FCPATH . 'assets/images/productos/' . $image_name;
+                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_destiny)) {
+                        $output[] = array(
+                            'status' => false,
+                            'response' => 'No se pudo copiar la imagen al servidor.'
+                        );
+                    } else {
+                        $new_data['image_url'] = $image_name;
+                        if (!$this->Model_Product->create($new_data)) {
+                            $output[] = array(
+                                'status' => false,
+                                'response' => 'No fue posible agregar el producto.'
+                            );
+                        } else {
+                            $output[] = array(
+                                'status' => true,
+                                'response' => 'El producto se registró correctamente.'
+                            );
+                        }
+                    }
                 }
             }
         }
@@ -235,7 +251,6 @@ class Productos extends CI_Controller
             'stock' => $this->input->post('stock'),
             'large_description' => $this->input->post('largeDescription'),
             'short_description' => $this->input->post('shortDescription'),
-            //'image_url' => $this->input->post('image'),
             'updated_at' => $fecha
         );
 
@@ -245,55 +260,79 @@ class Productos extends CI_Controller
                 'response' => 'No fue posible validar los datos.'
             );
         } else {
-            if (!$this->Model_Product->edit($edit_data)) {
-                $output[] = array(
-                    'status' => false,
-                    'response' => 'No fue posible editar al producto.'
-                );
+            if (!isset($_FILES['image'])) {
+                if (!$this->Model_Product->edit($edit_data)) {
+                    $output[] = array(
+                        'status' => false,
+                        'response' => 'No fue posible editar al producto.'
+                    );
+                } else {
+                    $output[] = array(
+                        'status' => true,
+                        'response' => 'El producto fue editado correctamente.'
+                    );
+                }
             } else {
-                $output[] = array(
-                    'status' => true,
-                    'response' => 'El producto fue editado correctamente.'
-                );
+                $image_name = $_FILES['image']['name'];
+                $image_destiny = FCPATH . 'assets/images/productos/' . $image_name;
+                if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_destiny)) {
+                    $output[] = array(
+                        'status' => false,
+                        'response' => 'No se pudo copiar la imagen al servidor.'
+                    );
+                } else {
+                    $edit_data['image_url'] = $image_name;
+                    if (!$this->Model_Product->edit($edit_data)) {
+                        $output[] = array(
+                            'status' => false,
+                            'response' => 'No fue posible editar al producto.'
+                        );
+                    } else {
+                        $output[] = array(
+                            'status' => true,
+                            'response' => 'El producto fue editado correctamente.'
+                        );
+                    }
+                }
             }
+
+            echo json_encode($output);
+            exit();
         }
 
-        echo json_encode($output);
-        exit();
-    }
+        function create_pdf()
+        {
+            $this->load->library('Pdf');
+            $pdf = $this->pdf->load();
 
-    function create_pdf()
-    {
-        $this->load->library('Pdf');
-        $pdf = $this->pdf->load();
-
-        switch ($this->input->get('type')) {
-            case 'products':
-                $table_data = $this->Model_Product->all();
-                $pdf_table_body = '';
-                foreach ($table_data as $data) {
-                    $pdf_table_body .= '<tr>';
-                    $pdf_table_body .= '<th>' . $data->id . '</th>';
-                    $pdf_table_body .= '<th>' . $data->product_name . '</th>';
-                    $pdf_table_body .= '<th>' . $data->category_id . '</th>';
-                    $pdf_table_body .= '<th> $' . number_format($data->price, 0, ',', '.') . '</th>';
-                    $pdf_table_body .= '<th> $' . number_format($data->last_buy, 0, ',', '.') . '</th>';
-                    $pdf_table_body .= '<th> %' . $data->discount . '</th>';
-                    $pdf_table_body .= '<th>' . $data->stock . '</th>';
-                    $pdf_table_body .= '</tr>';
-                }
-                $pdf_data = array(
-                    'fecha' => date('Y-m-d H:i:s'),
-                    'title' => 'Productos',
-                    'thead' => array('ID', 'Producto', 'Categoria', 'Valor', 'Ultima Compra', 'Descuento', 'Inventario'),
-                    'tbody' => $pdf_table_body
-                );
-                $html = $this->genetic->create_html_to_pdf($pdf_data);
-                $pdf->loadHtml($html);
-                $pdf->setPaper('A4', 'landscape');
-                $pdf->render();
-                $pdf->stream();
-                break;
+            switch ($this->input->get('type')) {
+                case 'products':
+                    $table_data = $this->Model_Product->all();
+                    $pdf_table_body = '';
+                    foreach ($table_data as $data) {
+                        $pdf_table_body .= '<tr>';
+                        $pdf_table_body .= '<th>' . $data->id . '</th>';
+                        $pdf_table_body .= '<th>' . $data->product_name . '</th>';
+                        $pdf_table_body .= '<th>' . $data->category_id . '</th>';
+                        $pdf_table_body .= '<th> $' . number_format($data->price, 0, ',', '.') . '</th>';
+                        $pdf_table_body .= '<th> $' . number_format($data->last_buy, 0, ',', '.') . '</th>';
+                        $pdf_table_body .= '<th> %' . $data->discount . '</th>';
+                        $pdf_table_body .= '<th>' . $data->stock . '</th>';
+                        $pdf_table_body .= '</tr>';
+                    }
+                    $pdf_data = array(
+                        'fecha' => date('Y-m-d H:i:s'),
+                        'title' => 'Productos',
+                        'thead' => array('ID', 'Producto', 'Categoria', 'Valor', 'Ultima Compra', 'Descuento', 'Inventario'),
+                        'tbody' => $pdf_table_body
+                    );
+                    $html = $this->genetic->create_html_to_pdf($pdf_data);
+                    $pdf->loadHtml($html);
+                    $pdf->setPaper('A4', 'landscape');
+                    $pdf->render();
+                    $pdf->stream();
+                    break;
+            }
         }
     }
 }
