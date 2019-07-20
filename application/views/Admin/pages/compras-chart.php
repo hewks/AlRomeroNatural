@@ -6,7 +6,7 @@
                 <h4 class="bs-page-section-title"><?= $page_title ?> Graficos</h4>
             </div>
             <div class="bs-header-section-right">
-                <a href="<?= base_url() ?>Back/<?= $section ?>/create_pdf?type=compras" class="bs-section-download"><i class="fas fa-file-export"></i></a>
+                <a href="<?= base_url() ?>BackOffice/<?= $section ?>/create_pdf?type=compras" class="bs-section-download"><i class="fas fa-file-export"></i></a>
             </div>
         </div>
         <div class="bs-page-section-body">
