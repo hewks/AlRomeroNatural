@@ -235,6 +235,28 @@ class Productos extends CI_Controller
         exit();
     }
 
+    function fav()
+    {
+        header('Content-Type: application/json');
+
+        $output = array();
+
+        if (!$this->Model_Product->change_fav($this->input->post('id'))) {
+            $output[] = array(
+                'status' => false,
+                'response' => 'Tu producto se quitó de los favoritos.'
+            );
+        } else {
+            $output[] = array(
+                'status' => true,
+                'response' => 'El producto esta en favoritos.'
+            );
+        }
+
+        echo json_encode($output);
+        exit();
+    }
+
     function edit()
     {
         header('Content-Type: application/json');

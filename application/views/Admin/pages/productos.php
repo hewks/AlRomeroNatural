@@ -24,6 +24,7 @@
                         <td>Descuento</td>
                         <td>Inventario</td>
                         <td>Status</td>
+                        <td>Fav</td>
                         <td>Act</td>
                     </tr>
                 </thead>
@@ -39,6 +40,7 @@
                         <td>Descuento</td>
                         <td>Inventario</td>
                         <td>Status</td>
+                        <td>Fav</td>
                         <td>Act</td>
                     </tr>
                 </tfoot>

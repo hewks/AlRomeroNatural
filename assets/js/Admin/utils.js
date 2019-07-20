@@ -247,6 +247,7 @@ function sectionAction(moduleName, id, action) {
                     text: sectionData[0]['response']
                 });
             } else {
+                tableSection();
                 PNotify.error({
                     title: moduleName,
                     text: sectionData[0]['response']

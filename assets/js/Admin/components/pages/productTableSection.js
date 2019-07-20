@@ -30,7 +30,7 @@ document.getElementById('bs-send-form-button').addEventListener('click', e => {
 });
 
 function tableSection() {
-    var tableColumns = ['id', 'product', 'category', 'price', 'lastBuy', 'discount', 'stock', 'status', 'actions'];
+    var tableColumns = ['id', 'product', 'category', 'price', 'lastBuy', 'discount', 'stock', 'status','fav', 'actions'];
     var dataTableColumns = [];
 
     tableColumns.forEach(column => {
