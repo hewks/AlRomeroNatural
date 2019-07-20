@@ -11,7 +11,7 @@
         </div>
         <div class="bs-page-section-body">
             <div class="bs-page-chart-container">
-                <canvas class="bs-page-chart" id="bs-services-chart"></canvas>
+                <canvas class="bs-page-chart" id="bs-ventas-chart"></canvas>
             </div>
         </div>
     </div>

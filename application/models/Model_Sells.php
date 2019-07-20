@@ -1,11 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Model_Buy extends Model_Genetic
+class Model_Sells extends Model_Genetic
 {
-
-    protected $tab = 'buy_register';
-    protected $cells = ['id', 'ref', 'product_id', 'product_quantity', 'product_buy_price', 'total_price', 'user_id', 'created_at'];
+    protected $tab = 'sells_register';
+    protected $cells = ['id', 'user_id', 'products_id', 'total_price', 'discount', 'created_at', 'products_quantity'];
     protected $select = '';
 
     function __construct()
@@ -25,12 +24,12 @@ class Model_Buy extends Model_Genetic
                 foreach ($data as $row) {
                     $query[] = array(
                         'id' => $row->id,
-                        'product' => $row->product_id,
-                        'quantity' => $row->product_quantity,
-                        'unity' => '$ ' . number_format($row->product_buy_price,0,',','.'),
-                        'total' => '$ ' . number_format($row->total_price,0,',','.'),
-                        'date' => $row->created_at,
-                        'user' => $row->user_id
+                        'user' => $row->user_id,
+                        'products' => $row->products_id,
+                        'quantity' => $row->products_quantity,
+                        'price' => '$ ' . number_format($row->total_price, 0, ',', '.'),
+                        'discount' => '% ' . $row->discount,
+                        'date' => '$ ' . $row->created_at,
                     );
                 }
                 break;

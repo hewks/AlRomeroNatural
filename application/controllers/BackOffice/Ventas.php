@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Compras extends CI_Controller
+class Ventas extends CI_Controller
 {
 
     function __construct()
@@ -9,7 +9,8 @@ class Compras extends CI_Controller
         parent::__construct();
         $this->load->library('genetic');
         $this->load->model('Model_Genetic');
-        $this->load->model('Model_Buy');
+        $this->load->model('Model_Product');
+        $this->load->model('Model_Sells');
     }
 
     function index()
@@ -34,18 +35,18 @@ class Compras extends CI_Controller
 
         $footer_data = array(
             'scripts' => '<script src="' . base_url() . 'assets/vendor/md5.js"></script>
-            <script src="' . base_url() . 'assets/js/Admin/components/pages/buysTableSection.js"></script>'
+            <script src="' . base_url() . 'assets/js/Admin/components/pages/sellsTableSection.js"></script>'
         );
 
         $section_data = array(
-            'page_title' => 'Compras',
-            'section' => 'Compras'
+            'page_title' => 'Ventas',
+            'section' => 'Ventas'
         );
 
         $this->load->view('Admin/layouts/header', $header_data);
         $this->load->view('Admin/layouts/navigation');
-        $this->load->view('Admin/pages/compras-chart', $section_data);
-        $this->load->view('Admin/pages/compras', $section_data);
+        $this->load->view('Admin/pages/ventas-chart', $section_data);
+        $this->load->view('Admin/pages/ventas', $section_data);
         $this->load->view('Admin/layouts/footer', $footer_data);
     }
 
@@ -57,8 +58,8 @@ class Compras extends CI_Controller
 
         switch ($this->input->post('requestType')) {
             case 'all':
-                $all_data = $this->Model_Buy->all('table');
-                $select_categories_data = $this->Model_Buy->search_custom('id,product_name,stock', 'product_register');
+                $all_data = $this->Model_Sells->all('table');
+                $product = $this->Model_Sells->search_custom('product_name,stock,id', 'product_register');
                 $output[] = array(
                     'status' => true,
                     'response' => 'Los datos se hallaron correctamente'
@@ -67,15 +68,32 @@ class Compras extends CI_Controller
                     'tableData' => $all_data,
                     'selectData' => array(
                         'selects' => 'productSelect',
-                        'data' => $select_categories_data
+                        'data' => $product
                     )
                 );
+                break;
+            case 'one':
+                $one_data = $this->Model_Sells->one($this->input->post('id'));
+                if (!($this->genetic->validate_data($one_data))) {
+                    $output[] = array(
+                        'status' => false,
+                        'response' => 'No fue posible hallar los datos'
+                    );
+                } else {
+                    $output[] = array(
+                        'status' => true,
+                        'response' => 'Los datos se hallaron correctamente'
+                    );
+                    $output[] = array(
+                        'tableData' => $one_data
+                    );
+                }
                 break;
             case 'chart':
                 $table = $this->input->post('table');
                 $time = $this->input->post('time');
                 $request_data = 'total_price, created_at';
-                $chart_data = $this->Model_Buy->chart_data_request($table, $request_data, $time);
+                $chart_data = $this->Model_Sells->chart_data_request($table, $request_data, $time);
                 $new_chart_data = array();
                 if (!$this->genetic->validate_data($chart_data)) {
                     $output[] = array(
@@ -108,25 +126,24 @@ class Compras extends CI_Controller
 
     function add()
     {
-
         header('Content-Type: application/json');
 
         $output = array();
         $fecha = date('Y-m-d H:i:s');
 
-        $product = $this->input->post('product');
+        $product_id = $this->input->post('product');
+        $product_data = $this->Model_Product->search_product_data($product_id);
         $quantity = $this->input->post('quantity');
-        $product_price = $this->input->post('buyPrice');
-        $total_price = $quantity * $product_price;
+        $discount = $product_data['discount'];
+        $total_price = ($product_data['price'] * $quantity) - ($product_data['price'] * $quantity * $discount);
 
         $new_data = array(
-            'ref' => $fecha . '-' . $product,
-            'product_id' => $product,
-            'product_quantity' => $quantity,
-            'product_buy_price' => $product_price,
+            'products_id' => $this->input->post('product'),
+            'products_quantity' => $quantity,
             'total_price' => $total_price,
-            'user_id' => $this->session->userdata('id'),
-            'created_at' => $fecha
+            'discount' => $discount,
+            'created_at' => $fecha,
+            'user_id' => $this->session->userdata('id')
         );
 
         if (!$this->genetic->validate_data($new_data)) {
@@ -135,27 +152,27 @@ class Compras extends CI_Controller
                 'response' => 'No fue posible validar el formulario'
             );
         } else {
-            if (!$this->Model_Buy->change_product_stock($product, 'buy', $quantity)) {
+            if ($this->Model_Product->search_product_stock($product_id) < $new_data['products_quantity']) {
                 $output[] = array(
                     'status' => false,
-                    'response' => 'No fue posible agregar el producto al inventario. Contacta con el programador.'
+                    'response' => 'No hay suficiente producto en el inventario'
                 );
             } else {
-                if (!$this->Model_Buy->change_product_last_buy($product, $product_price)) {
+                if (!$this->Model_Product->change_product_stock($product_id, 'sell', $new_data['products_quantity'])) {
                     $output[] = array(
                         'status' => false,
-                        'response' => 'No se actualizó la ultima compra. Contacta con el programador.'
+                        'response' => 'No fue posible cambiar el stock del producto, contacta con el programador'
                     );
                 } else {
-                    if (!$this->Model_Buy->create($new_data)) {
+                    if (!$this->Model_Sells->create($new_data)) {
                         $output[] = array(
                             'status' => false,
-                            'response' => 'No fue posible agregar la compra.'
+                            'response' => 'No se pudo registrar la venta'
                         );
                     } else {
                         $output[] = array(
                             'status' => true,
-                            'response' => 'La compra se registró correctamente.'
+                            'response' => 'La venta se registró.'
                         );
                     }
                 }
@@ -172,25 +189,24 @@ class Compras extends CI_Controller
         $pdf = $this->pdf->load();
 
         switch ($this->input->get('type')) {
-            case 'compras':
-                $table_data = $this->Model_Buy->all();
+            case 'products':
+                $table_data = $this->Model_Sells->all();
                 $pdf_table_body = '';
                 foreach ($table_data as $data) {
                     $pdf_table_body .= '<tr>';
                     $pdf_table_body .= '<th>' . $data->id . '</th>';
-                    $pdf_table_body .= '<th>' . $data->ref . '</th>';
-                    $pdf_table_body .= '<th>' . $data->product_id . '</th>';
-                    $pdf_table_body .= '<th>' . $data->product_quantity . '</th>';
-                    $pdf_table_body .= '<th> $' . number_format($data->product_buy_price, 2, ',', '.') . '</th>';
-                    $pdf_table_body .= '<th> $' . number_format($data->total_price, 2, ',', '.') . '</th>';
-                    $pdf_table_body .= '<th>' . $data->user_id . '</th>';
-                    $pdf_table_body .= '<th>' . $data->created_at . '</th>';
+                    $pdf_table_body .= '<th>' . $data->product_name . '</th>';
+                    $pdf_table_body .= '<th>' . $data->category_id . '</th>';
+                    $pdf_table_body .= '<th> $' . number_format($data->price, 0, ',', '.') . '</th>';
+                    $pdf_table_body .= '<th> $' . number_format($data->last_buy, 0, ',', '.') . '</th>';
+                    $pdf_table_body .= '<th> %' . $data->discount . '</th>';
+                    $pdf_table_body .= '<th>' . $data->stock . '</th>';
                     $pdf_table_body .= '</tr>';
                 }
                 $pdf_data = array(
                     'fecha' => date('Y-m-d H:i:s'),
-                    'title' => 'Nomina',
-                    'thead' => array('ID', 'Referencia', 'Producto', 'Cantidad', 'Precio (Unidad)', 'Precio total', 'Usuario', 'Fecha'),
+                    'title' => 'Productos',
+                    'thead' => array('ID', 'Producto', 'Categoria', 'Valor', 'Ultima Compra', 'Descuento', 'Inventario'),
                     'tbody' => $pdf_table_body
                 );
                 $html = $this->genetic->create_html_to_pdf($pdf_data);

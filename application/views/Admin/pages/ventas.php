@@ -8,7 +8,7 @@
                 <h4 class="bs-page-section-title"><?= $page_title ?></h4>
             </div>
             <div class="bs-header-section-right">
-                <a href="<?= base_url() ?>BackOffice/<?= $section ?>/create_pdf?type=servicios" class="bs-section-download"><i class="fas fa-file-export"></i></a>
+                <a href="<?= base_url() ?>BackOffice/<?= $section ?>/create_pdf?type=ventas" class="bs-section-download"><i class="fas fa-file-export"></i></a>
                 <button class="bs-section-add" data-toggle="modal" data-target="#addModal">Agregar</button>
             </div>
         </div>
@@ -17,10 +17,12 @@
                 <thead>
                     <tr>
                         <td>ID</td>
-                        <td>Servicio</td>
+                        <td>Producto</td>
+                        <td>Cantidad</td>
                         <td>Valor</td>
-                        <td>Status</td>
-                        <td>Act</td>
+                        <td>Descuento</td>
+                        <td>Fecha</td>
+                        <td>User</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,10 +30,12 @@
                 <tfoot>
                     <tr>
                         <td>ID</td>
-                        <td>Servicio</td>
+                        <td>Producto</td>
+                        <td>Cantidad</td>
+                        <td>Descuento</td>
                         <td>Valor</td>
-                        <td>Status</td>
-                        <td>Act</td>
+                        <td>Fecha</td>
+                        <td>User</td>
                     </tr>
                 </tfoot>
             </table>
@@ -55,12 +59,12 @@
             <div class="modal-body">
                 <form class="bs-admin-form" id="bs-send-form">
                     <div class="bs-admin-form-group">
-                        <label for="service">Servicio</label>
-                        <input type="text" name="service" data-name="Servicio" class="bs-admin-input">
+                        <label for="service">Producto</label>
+                        <select name="product" data-name="Producto" class="bs-admin-input productSelect"></select>
                     </div>
                     <div class="bs-admin-form-group">
-                        <label for="price">Valor</label>
-                        <input type="text" name="price" data-name="Valors" class="bs-admin-input">
+                        <label for="quantity">Cantidad</label>
+                        <input type="text" data-name="Cantidad" name="quantity" class="bs-admin-input">
                     </div>
                 </form>
             </div>
@@ -72,35 +76,3 @@
     </div>
 </div>
 <!-- Add Modal -->
-
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><?= $page_title ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="tableSection();">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="bs-admin-form" id="bs-edit-form">
-                    <div class="bs-admin-form-group">
-                        <label for="service">Servicio</label>
-                        <input type="text" name="service" data-name="Servicio" class="bs-admin-input">
-                    </div>
-                    <div class="bs-admin-form-group">
-                        <label for="price">Valor</label>
-                        <input type="text" name="price" data-name="Valors" class="bs-admin-input">
-                    </div>
-                    <input type="hidden" name="id" data-name="ID" class="bs-admin-input">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="tableSection();">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="editSection();">Agregar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Edit Modal -->

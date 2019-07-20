@@ -78,4 +78,13 @@ class Model_Product extends Model_Genetic
         $this->db->update($this->tab, $update_data);
         return ($fav == 2) ? true : false;
     }
+
+    function search_product_data($product)
+    {
+        $this->db->from($this->tab);
+        $this->db->select('product_name,id,price,stock,discount');
+        $this->db->where('id', $product);
+        $query = $this->db->get()->row();
+        return ($query) ? (array) $query : false;
+    }
 }

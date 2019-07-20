@@ -196,6 +196,8 @@ class Model_Genetic extends CI_Model
         return ($this->db->update($this->tab, $update_data)) ? true : false;
     }
 
+    // Products 
+
     function search_product_stock($product)
     {
         $this->db->select('stock');
@@ -230,5 +232,4 @@ class Model_Genetic extends CI_Model
         $this->db->where('id', $product);
         return ($this->db->update('product_register', $update_data)) ? true : false;
     }
-
 }

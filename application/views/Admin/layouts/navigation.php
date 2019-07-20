@@ -28,9 +28,6 @@
             <span class="bs-sidebar-separator-title">Negocio</span>
         </div>        
         <a href="<?= base_url() ?>BackOffice/Ventas" class="bs-sidebar-block-a">Ventas</a>
-        <a href="<?= base_url() ?>BackOffice/Compras" class="bs-sidebar-block-a">Compras</a>
-        <a href="<?= base_url() ?>BackOffice/Nomina" class="bs-sidebar-block-a">Nomina</a>
-        <a href="<?= base_url() ?>BackOffice/Servicios" class="bs-sidebar-block-a">Servicios</a>
         <div class="bs-sidebar-separator">
             <span class="bs-sidebar-separator-title">Productos</span>
         </div>
