@@ -69,7 +69,7 @@
                 <div id="hw-navigation-toggler" class="hw-header-brand">
                     <h1>Al Romero Natural</h1>
                 </div>
-                <a href="#" class="hw-header-link">Nosotros</a>
+                <a href="<?= base_url() ?>Admin" class="hw-header-link">Admin</a>
                 <a href="#" class="hw-header-link">Contacto</a>
                 <a href="#" class="hw-header-link">Mapa</a>
             </header>
@@ -97,7 +97,7 @@
                     <span>Nuestra Tienda</span>
                 </div>
                 <div class="hw-sidebar-links-container">
-                    <a href="#" class="hw-sidebar-link">Informaci&oacute;n</a>
+                    <a href="<?= base_url() ?>Admin" class="hw-sidebar-link">Admin</a>
                     <a href="#" class="hw-sidebar-link">Contacto</a>
                     <a href="#" class="hw-sidebar-link">Mapa</a>
                 </div>
