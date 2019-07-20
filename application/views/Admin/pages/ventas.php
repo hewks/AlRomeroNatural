@@ -20,9 +20,9 @@
                         <td>Producto</td>
                         <td>Cantidad</td>
                         <td>Valor</td>
-                        <td>Descuento</td>
-                        <td>Fecha</td>
+                        <td>Descuento</td>                        
                         <td>User</td>
+                        <td>Fecha</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,8 +34,8 @@
                         <td>Cantidad</td>
                         <td>Descuento</td>
                         <td>Valor</td>
-                        <td>Fecha</td>
                         <td>User</td>
+                        <td>Fecha</td>
                     </tr>
                 </tfoot>
             </table>

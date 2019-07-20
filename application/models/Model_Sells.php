@@ -29,7 +29,7 @@ class Model_Sells extends Model_Genetic
                         'quantity' => $row->products_quantity,
                         'price' => '$ ' . number_format($row->total_price, 0, ',', '.'),
                         'discount' => '% ' . $row->discount,
-                        'date' => '$ ' . $row->created_at,
+                        'date' =>  $row->created_at,
                     );
                 }
                 break;

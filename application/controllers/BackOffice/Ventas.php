@@ -195,12 +195,12 @@ class Ventas extends CI_Controller
                 foreach ($table_data as $data) {
                     $pdf_table_body .= '<tr>';
                     $pdf_table_body .= '<th>' . $data->id . '</th>';
-                    $pdf_table_body .= '<th>' . $data->product_name . '</th>';
-                    $pdf_table_body .= '<th>' . $data->category_id . '</th>';
-                    $pdf_table_body .= '<th> $' . number_format($data->price, 0, ',', '.') . '</th>';
-                    $pdf_table_body .= '<th> $' . number_format($data->last_buy, 0, ',', '.') . '</th>';
+                    $pdf_table_body .= '<th>' . $data->products_id . '</th>';
+                    $pdf_table_body .= '<th>' . $data->products_quantity . '</th>';
+                    $pdf_table_body .= '<th> $' . number_format($data->total_price, 0, ',', '.') . '</th>';
                     $pdf_table_body .= '<th> %' . $data->discount . '</th>';
-                    $pdf_table_body .= '<th>' . $data->stock . '</th>';
+                    $pdf_table_body .= '<th>' . $data->created_at . '</th>';
+                    $pdf_table_body .= '<th>' . $data->user_id . '</th>';
                     $pdf_table_body .= '</tr>';
                 }
                 $pdf_data = array(
