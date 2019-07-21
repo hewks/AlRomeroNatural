@@ -454,7 +454,7 @@ Profile Styles
 }
 
 /* ///////////////////////////////////////////////
-Products
+Best Products Products
 /////////////////////////////////////////////// */
 
 .hw-product-show-container {
@@ -469,12 +469,14 @@ Products
     padding: 20px 10px;
     transition: all 0.4s ease;
     max-width: 300px;
+    border-bottom: 2px solid rgb(199, 185, 169);
 }
 
-@media screen and (min-width: 660px){
+@media screen and (min-width: 660px) {
     .hw-product-show-container {
         flex-direction: row;
-    }    
+    }
+
     .hw-product-show {
         width: 33.33333%;
     }
@@ -510,8 +512,58 @@ Products
 .hw-product-show>.hw-product-show-price {
     font-size: 32px;
     font-weight: bold;
-    color:rgb(199, 185, 169);
+    color: rgb(199, 185, 169);
     text-align: center;
     display: block;
     width: 100%;
+}
+
+.hw-product-view-error {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    color: rgb(199, 185, 169);
+}
+
+.hw-product-container .hw-product-image>div {
+    min-height: 250px;
+    min-width: 250px;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.hw-product-info {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 760px) {
+    .hw-product-container .hw-product-image>div {
+        min-height: 250px;
+        min-width: 250px;
+        max-width: 350px;
+        margin: 0 10px 0 auto;
+    }
+
+    .hw-product-info {
+        max-width: 350px;
+        margin: 0 auto 0 10px;
+    }
+}
+
+.hw-product-info>.hw-product-info-short {
+    text-align: center;
+    color: rgb(199, 185, 169);
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hw-product-info>.hw-product-info-large {
+    text-align: justify;
+    color: rgb(199, 185, 169);
+    font-size: 13px;
+    margin-top: 7px;
+    margin-bottom: 7px;
 }

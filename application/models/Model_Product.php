@@ -52,7 +52,7 @@ class Model_Product extends Model_Genetic
     function return_principal_products()
     {
         $this->db->from($this->tab);
-        $this->db->select('product_name,price,short_description,image_url');
+        $this->db->select('id,product_name,price,short_description,image_url');
         $this->db->where('fav', 2);
         $query = $this->db->get()->result();
         return ($query) ? $query : array();
@@ -86,5 +86,14 @@ class Model_Product extends Model_Genetic
         $this->db->where('id', $product);
         $query = $this->db->get()->row();
         return ($query) ? (array) $query : false;
+    }
+
+    function search_one_product($product)
+    {
+        $this->db->from($this->tab);
+        $this->db->select('product_name,id,price,stock,discount,short_description,large_description,image_url');
+        $this->db->where('id', $product);
+        $query = $this->db->get()->row();
+        return ($query) ? $query : false;
     }
 }

@@ -25,7 +25,7 @@ class Main extends CI_Controller
 			)
 		);
 
-		$section_data = array(
+		$products_data = array(
 			'principal_products' => $this->Model_Product->return_principal_products()
 		);
 
@@ -36,7 +36,8 @@ class Main extends CI_Controller
 		);
 
 		$this->load->view('pages/layout/header', $header_data);
-		$this->load->view('pages/main',$section_data);
+		$this->load->view('pages/components/products_slider');
+		$this->load->view('pages/components/best_products', $products_data);
 		$this->load->view('pages/layout/footer', $footer_data);
 	}
 }
